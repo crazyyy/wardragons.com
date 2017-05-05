@@ -427,7 +427,7 @@ function easy_breadcrumbs() {
   $separator          = ' &raquo; ';
   $breadcrums_id      = 'breadcrumbs';
   $breadcrums_class   = 'breadcrumbs';
-  $home_title         = 'Главная';
+  $home_title         = 'Home';
 
   // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
   $custom_taxonomy    = 'categories';
@@ -439,15 +439,18 @@ function easy_breadcrumbs() {
   if ( !is_front_page() ) {
 
     // Build the breadcrums
-    echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
+    echo '<div class="c-breadcrumbs">';
+    echo '<div class="c-breadcrumbs__home">';
+    echo '<a class="c-breadcrumbs__icon" href="' . get_home_url() . '">';
+    echo '<i class="c-icon c-icon--home"></i><span class="u-sr-only">' . $home_title . '</span>';
+    echo '</a>';
+    echo '</div>';
+    echo '<ul id="' . $breadcrums_id . '" class="o-list-inline c-breadcrumbs__list ' . $breadcrums_class . '">';
 
-    // Home page
-    echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
-    echo '<li class="separator separator-home"> ' . $separator . ' </li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
 
-            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . post_type_archive_title($prefix, false) . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-archive">' . post_type_archive_title($prefix, false) . '</li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
 
@@ -460,13 +463,12 @@ function easy_breadcrumbs() {
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
 
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
+                echo '<li class="c-breadcrumbs__item item-cat item-custom-post-type-' . $post_type . '"><a class="c-breadcrumbs__link  bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
 
             }
 
             $custom_tax_name = get_queried_object()->name;
-            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . $custom_tax_name . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-archive">' . $custom_tax_name . '</li>';
 
         } else if ( is_single() ) {
 
@@ -479,8 +481,7 @@ function easy_breadcrumbs() {
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
 
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
+                echo '<li class="c-breadcrumbs__item item-cat item-custom-post-type-' . $post_type . '"><a class="c-breadcrumbs__link  c-breadcrumbs__link bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
 
             }
 
@@ -499,8 +500,7 @@ function easy_breadcrumbs() {
                 // Loop through parent categories and store in variable $cat_display
                 $cat_display = '';
                 foreach($cat_parents as $parents) {
-                    $cat_display .= '<li class="item-cat">'.$parents.'</li>';
-                    $cat_display .= '<li class="separator"> ' . $separator . ' </li>';
+                    $cat_display .= '<li class="c-breadcrumbs__item item-cat">'.$parents.'</li>';
                 }
 
             }
@@ -520,25 +520,24 @@ function easy_breadcrumbs() {
             // Check if the post is in a category
             if(!empty($last_category)) {
                 echo $cat_display;
-                echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '" title="' . get_the_title() . '">' . get_the_title() . '</strong></li>';
+                echo '<li class="c-breadcrumbs__item item-current item-' . $post->ID . '">' . get_the_title() . '</li>';
 
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
 
-                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
-                echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '" title="' . get_the_title() . '">' . get_the_title() . '</strong></li>';
+                echo '<li class="c-breadcrumbs__item item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="c-breadcrumbs__link  bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';
+                echo '<li class="c-breadcrumbs__item item-current item-' . $post->ID . '">' . get_the_title() . '</li>';
 
             } else {
 
-                echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '" title="' . get_the_title() . '">' . get_the_title() . '</strong></li>';
+                echo '<li class="c-breadcrumbs__item item-current item-' . $post->ID . '">' . get_the_title() . '</li>';
 
             }
 
         } else if ( is_category() ) {
 
             // Category page
-            echo '<li class="item-current item-cat"><strong class="bread-current bread-cat">' . single_cat_title('', false) . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-cat">' . single_cat_title('', false) . '</li>';
 
         } else if ( is_page() ) {
 
@@ -554,20 +553,19 @@ function easy_breadcrumbs() {
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
-                    $parents .= '<li class="separator separator-' . $ancestor . '"> ' . $separator . ' </li>';
+                    $parents .= '<li class="c-breadcrumbs__item item-parent item-parent-' . $ancestor . '"><a class="c-breadcrumbs__link  bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
                 }
 
                 // Display parent pages
                 echo $parents;
 
                 // Current page
-                echo '<li class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></li>';
+                echo '<li class="c-breadcrumbs__item item-current item-' . $post->ID . '"> ' . get_the_title() . '</li>';
 
             } else {
 
                 // Just display current page if not parents
-                echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '"> ' . get_the_title() . '</strong></li>';
+                echo '<li class="c-breadcrumbs__item item-current item-' . $post->ID . '"> ' . get_the_title() . '</li>';
 
             }
 
@@ -585,38 +583,35 @@ function easy_breadcrumbs() {
             $get_term_name  = $terms[0]->name;
 
             // Display the tag name
-            echo '<li class="item-current item-tag-' . $get_term_id . ' item-tag-' . $get_term_slug . '"><strong class="bread-current bread-tag-' . $get_term_id . ' bread-tag-' . $get_term_slug . '">' . $get_term_name . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-tag-' . $get_term_id . ' item-tag-' . $get_term_slug . '">' . $get_term_name . '</li>';
 
         } elseif ( is_day() ) {
 
             // Day archive
 
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('Y') . '"> ' . $separator . ' </li>';
+            echo '<li class="c-breadcrumbs__item item-year item-year-' . get_the_time('Y') . '"><a class="c-breadcrumbs__link  bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
 
             // Month link
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('m') . '"> ' . $separator . ' </li>';
+            echo '<li class="c-breadcrumbs__item item-month item-month-' . get_the_time('m') . '"><a class="c-breadcrumbs__link  bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</a></li>';
 
             // Day display
-            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ' Archives</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ' Archives</li>';
 
         } else if ( is_month() ) {
 
             // Month Archive
 
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('Y') . '"> ' . $separator . ' </li>';
+            echo '<li class="c-breadcrumbs__item item-year item-year-' . get_the_time('Y') . '"><a class="c-breadcrumbs__link  bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
 
             // Month display
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-month item-month-' . get_the_time('m') . '">' . get_the_time('M') . ' Archives</li>';
 
         } else if ( is_year() ) {
 
             // Display year archive
-            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-current-' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</li>';
 
         } else if ( is_author() ) {
 
@@ -627,25 +622,26 @@ function easy_breadcrumbs() {
             $userdata = get_userdata( $author );
 
             // Display author name
-            echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><strong class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '">' . 'Author: ' . $userdata->display_name . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-current-' . $userdata->user_nicename . '">' . 'Author: ' . $userdata->display_name . '</li>';
 
         } else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'.__('Page') . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-current-' . get_query_var('paged') . '">'.__('Page') . ' ' . get_query_var('paged') . '</li>';
 
         } else if ( is_search() ) {
 
             // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">Search results for: ' . get_search_query() . '</strong></li>';
+            echo '<li class="c-breadcrumbs__item item-current item-current-' . get_search_query() . '">Search results for: ' . get_search_query() . '</li>';
 
         } elseif ( is_404() ) {
 
             // 404 page
-            echo '<li>' . 'Error 404' . '</li>';
+            echo '<li class="c-breadcrumbs__item">' . 'Error 404' . '</li>';
         }
 
         echo '</ul>';
+        echo '</div><!-- /.c-breadcrumbs -->';
 
     }
 
