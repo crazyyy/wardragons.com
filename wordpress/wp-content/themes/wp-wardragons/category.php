@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-  <div id="content" class="o-content-wrap" role="main">
     <div class="c-hero" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-hero-blog.jpg)">
       <div class="o-container">
         <div class="o-layout">

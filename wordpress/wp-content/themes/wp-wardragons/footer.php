@@ -2,7 +2,7 @@
         <div class="o-content-block__content">
           <div class="o-container o-content-block__container">
             <footer class="c-footer" role="contentinfo">
-              <a class="c-footer__logo c-logo c-logo--war-dragon-white-footer" href="http://wardragons.com">
+              <a class="c-footer__logo c-logo c-logo--war-dragon-white-footer" href="#">
                     War Dragons
                 </a>
               <div class="c-store-badges">
