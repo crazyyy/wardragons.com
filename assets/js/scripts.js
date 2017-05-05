@@ -21,3 +21,17 @@ if (typeof jQuery === 'undefined') {
   console.log('jQuery has loaded');
 }
 // Place any jQuery/helper plugins in here.
+
+$('.page-numbers li').each(function(index, el) {
+
+  $(this).addClass('c-pagination__item c-pagination__list-item ');
+  $(this).find('a').addClass('c-pagination__dot');
+  $(this).find('.current').parent().addClass('is-current');
+  $(this).find('.current').addClass('c-pagination__dot');
+  $(this).find('.next').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot');
+  $(this).find('.next').html('<span class="u-sr-only">Next</span><i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>');
+  $(this).find('.prev').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot');
+  $(this).find('.prev').html('<span class="u-sr-only">Next</span><i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>');
+
+});
+

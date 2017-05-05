@@ -85,7 +85,7 @@
   <?php wp_footer(); ?>
   <!-- Custom JS -->
   <script src="<?php echo get_template_directory_uri(); ?>/js/production.min.js"></script>
-  <script src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
+
 </body>
 
 </html>

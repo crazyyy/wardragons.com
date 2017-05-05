@@ -7654,3 +7654,9 @@ body.is-loaded .c-stat__bar-fill:after {
 .c-hero-bgi {
   background-size: cover;
 }
+
+.page-numbers {
+  @extend .o-list-unstyled;
+  @extend .c-pagination;
+  @extend .c-pagination--split;
+}

@@ -289,7 +289,13 @@ function html5wp_pagination() {
     'base' => str_replace($big, '%#%', get_pagenum_link($big)),
     'format' => '?paged=%#%',
     'current' => max(1, get_query_var('paged')),
-    'total' => $wp_query->max_num_pages
+    'total' => $wp_query->max_num_pages,
+    'prev_text'          => 'Previous',
+    'next_text'          => 'Next',
+    'type'               => 'list',
+    'add_args'           => false,
+    'before_page_number' => '<span class="u-sr-only">',
+    'after_page_number'  => '</span>'
   ));
 }
 
