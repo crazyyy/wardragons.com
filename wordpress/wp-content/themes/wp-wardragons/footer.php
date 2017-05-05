@@ -1,5 +1,3 @@
-
-
       <div class="o-content-block o-content-block--footer">
         <div class="o-content-block__content">
           <div class="o-container o-content-block__container">
@@ -25,38 +23,11 @@
                 <span class="u-sr-only">Scroll to Top</span>
               </a>
               <nav>
-                <ul class="o-list-inline c-footer-menu">
-                  <li class="c-footer-menu__item">
-                    <a class="c-footer-menu__link" href="http://wardragons.com/game-info">Game Info</a>
-                  </li>
-                  <li class="c-footer-menu__item">
-                    <a class="c-footer-menu__link" href="http://wardragons.com/blog">Blog</a>
-                  </li>
-                  <li class="c-footer-menu__item">
-                    <a class="c-footer-menu__link" href="http://wardragons.com/community">Community</a>
-                  </li>
-                  <li class="c-footer-menu__item">
-                    <a class="c-footer-menu__link" href="http://wardragons.com/media">Media</a>
-                  </li>
-                  <li class="c-footer-menu__item">
-                    <a class="c-footer-menu__link" href="http://www.wardragonsstore.com/" target="_blank">Shop</a>
-                  </li>
-                </ul>
+                <?php wpeFootNav(); ?>
               </nav>
-              <ul class="o-list-inline c-footer-menu c-footer-menu--dark">
-                <li class="c-footer-menu__item">
-                  <a class="c-footer-menu__link" href="http://pocketgems.com/privacy-policy/">Privacy Policy</a>
-                </li>
-                <li class="c-footer-menu__item">
-                  <a class="c-footer-menu__link" href="http://pocketgems.com/copyright/">Copyright</a>
-                </li>
-                <li class="c-footer-menu__item">
-                  <a class="c-footer-menu__link" href="http://pocketgems.com/terms-of-service/">Terms of Service</a>
-                </li>
-                <li class="c-footer-menu__item">
-                  <a class="c-footer-menu__link" href="http://pocketgems.com/licenses/">Licenses</a>
-                </li>
-              </ul>
+
+              <?php wpeSideNav(); ?>
+
               <ul class="c-social c-footer__social">
                 <li class="c-social__item">
                   <a class="c-social__link" href="https://www.facebook.com/WarDragonsGame/" target="_blank">
@@ -65,37 +36,37 @@
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="https://twitter.com/wardragonsgame" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--twitter"></i>
                     <span class="u-sr-only">Twitter</span>
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="https://instagram.com/WarDragonsGame" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--instagram"></i>
                     <span class="u-sr-only">Instagram</span>
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="https://www.youtube.com/channel/UClOycD5G1sz5VJQng4oZmcQ" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--youtube-play"></i>
                     <span class="u-sr-only">YouTube</span>
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="http://www.twitch.tv/WarDragonsGame" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--twitch"></i>
                     <span class="u-sr-only">Twitter</span>
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="http://www.linkedin.com/company/pocket-gems" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--linkedin"></i>
                     <span class="u-sr-only">LinkedIn</span>
                   </a>
                 </li>
                 <li class="c-social__item">
-                  <a class="c-social__link" href="http://pocketgems.com/" target="_blank">
+                  <a class="c-social__link" href="#" target="_blank">
                     <i class="c-icon c-icon--pocketgems"></i>
                     <span class="u-sr-only">PocketGems</span>
                   </a>
@@ -104,16 +75,12 @@
               <p class="c-footer__legal">
                 © 2011-2017 PocketGems, inc. all rights reserved
               </p>
-            </footer>
-            <!-- /.c-footer -->
+            </footer><!-- /.c-footer -->
           </div>
         </div>
       </div>
-    </div>
-    <!-- /.o-content-wrap -->
-  </div>
-  <!-- /.o-wrap -->
-  <!-- Vendor JS -->
+    </div><!-- /.o-content-wrap -->
+  </div><!-- /.o-wrap -->
 
   <?php wp_footer(); ?>
   <!-- Custom JS -->

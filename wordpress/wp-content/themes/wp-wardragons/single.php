@@ -1,5 +1,6 @@
 <?php get_header(); ?>
     <div id="content" class="o-content-wrap" role="main">
+
       <?php if (have_posts()): while (have_posts()) : the_post(); ?>
         <?php
           $image = get_field('header_background');
@@ -10,7 +11,6 @@
             $bgi = get_template_directory_uri().'/img/bg-hero-blog.jpg';
           }
         ?>
-
 
         <div class="c-hero c-hero-bgi" style="background-image: url(<?php echo $bgi ?>)">
           <div class="o-container">

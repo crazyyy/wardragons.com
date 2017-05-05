@@ -140,7 +140,7 @@ function wpeFootNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="footernav">%3$s</ul>',
+    'items_wrap'      => '<ul class="o-list-inline c-footer-menu">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -163,7 +163,7 @@ function wpeSideNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="sidebarnav">%3$s</ul>',
+    'items_wrap'      => '<ul class="o-list-inline c-footer-menu c-footer-menu--dark">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -174,8 +174,8 @@ add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 function register_html5_menu() {
   register_nav_menus(array(
     'header-menu' => __('Меню в шапке', 'wpeasy'),
-    'sidebar-menu' => __('Меню в сайдбар', 'wpeasy'),
-    'footer-menu' => __('Меню в подвал', 'wpeasy')
+    'sidebar-menu' => __('Меню в подвал 2', 'wpeasy'),
+    'footer-menu' => __('Меню в подвал 1', 'wpeasy')
   ));
 }
 //  If Dynamic Sidebar Existsов
