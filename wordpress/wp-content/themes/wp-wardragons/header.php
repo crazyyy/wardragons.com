@@ -49,7 +49,7 @@
     <header class="c-header" role="banner">
       <div class="c-header__inner">
         <div class="c-logo-block">
-          <a class="c-logo c-logo--war-dragons c-logo-block__logo" href="#">War Dragons</a>
+          <a class="c-logo c-logo--war-dragons c-logo-block__logo" href="<?php echo home_url(); ?>">War Dragons</a>
         </div>
         <!-- /.c-logo-block -->
         <div class="c-menu-block">
@@ -60,7 +60,7 @@
 
             <ul class="o-list-unstyled c-nav__list">
               <li class="c-nav__item ">
-                <a href="#" class="c-nav__link">Game Info</a>
+                <a href="<?php echo home_url(); ?>/game-info.htm" class="c-nav__link">Game Info</a>
                 <img class="c-nav__banner" src="<?php echo get_template_directory_uri(); ?>/img/banner-pointer.png" alt="">
                 <ul class="c-dropdown">
                   <li class="c-dropdown__item">
@@ -85,7 +85,7 @@
                 <img class="c-nav__banner" src="<?php echo get_template_directory_uri(); ?>/img/banner-pointer.png" alt="">
               </li>
               <li class="c-nav__item ">
-                <a href="#" class="c-nav__link">Community</a>
+                <a href="<?php echo home_url(); ?>/community.htm" class="c-nav__link">Community</a>
                 <img class="c-nav__banner" src="<?php echo get_template_directory_uri(); ?>/img/banner-pointer.png" alt="">
                 <ul class="c-dropdown">
                   <li class="c-dropdown__item">
@@ -227,22 +227,22 @@
           </div>
           <ul class="c-mobile-nav">
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://wardragons.com/game-info">Game Info</a>
+              <a class="c-mobile-nav__link" href="<?php echo home_url(); ?>/game-info.htm">Game Info</a>
             </li>
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://wardragons.com/blog">Blog</a>
+              <a class="c-mobile-nav__link" href=#">Blog</a>
             </li>
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://wardragons.com/community">Community</a>
+              <a class="c-mobile-nav__link" href="<?php echo home_url(); ?>/community.htm">Community</a>
             </li>
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://wardragons.com/media">Media</a>
+              <a class="c-mobile-nav__link" href="#">Media</a>
             </li>
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://shop.wardragons.com/" target="_blank">Shop</a>
+              <a class="c-mobile-nav__link" href="#" target="_blank">Shop</a>
             </li>
             <li class="c-mobile-nav__item">
-              <a class="c-mobile-nav__link" href="http://pgdragonsong.appspot.com/WarDragons" target="_blank">Download</a>
+              <a class="c-mobile-nav__link" href="#" target="_blank">Download</a>
             </li>
             <li class="c-mobile-nav__item">
               <ul class="c-mobile-nav__social c-social c-social--large c-social--clear">

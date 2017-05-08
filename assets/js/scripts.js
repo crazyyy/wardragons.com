@@ -2804,9 +2804,11 @@ $('.page-numbers li').each(function(index, el) {
   $(this).find('a').addClass('c-pagination__dot');
   $(this).find('.current').parent().addClass('is-current');
   $(this).find('.current').addClass('c-pagination__dot');
-  $(this).find('.next').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot');
+  $(this).find('.next').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot').parent().addClass('page-numbers--next');
+  $(this).find('.next').parent().addClass('page-numbers--next');
   $(this).find('.next').html('<span class="u-sr-only">Next</span><i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>');
-  $(this).find('.prev').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot');
+  $(this).find('.prev').addClass('c-pagination__nav c-pagination__nav--next').removeClass('c-pagination__dot').parent().addClass('page-numbers--prev');
+  $(this).find('.prev').parent().addClass('page-numbers--prev');
   $(this).find('.prev').html('<span class="u-sr-only">Next</span><i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>');
 
 });

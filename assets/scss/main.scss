@@ -5,7 +5,23 @@
 
   src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nDokq8qT6AIiNJ07Vf_NrVA.ttf) format('truetype');
 }
+.clearfix {
+  *zoom: 1;
+  &:before {
+    display: table;
 
+    content: '';
+  }
+  &:after {
+    display: table;
+    clear: both;
+
+    content: '';
+  }
+}
+.clear {
+  clear: both;
+}
 .c-infographic__text--orange {
   fill: #fd970f;
 }
@@ -7659,6 +7675,14 @@ body.is-loaded .c-stat__bar-fill:after {
   @extend .o-list-unstyled;
   @extend .c-pagination;
   @extend .c-pagination--split;
+  text-align: center;
+  display: block;
+  .page-numbers--prev {
+    float: left;
+  }
+  .page-numbers--next {
+    float: right;
+  }
 }
 
 

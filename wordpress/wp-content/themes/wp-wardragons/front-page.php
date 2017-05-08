@@ -76,530 +76,152 @@
           <div class="o-island o-island--super u-hidden@less-than-md"></div>
           <div class="c-slider-dragon-wrapper">
             <div class="c-slider-dragon js-slider-dragon">
-              <div class="c-slider-dragon__slide">
-                <div class="o-layout">
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--push-6@md">
-                    <div class="c-slider-dragon__dragon c-slider-dragon__dragon--fenrir">
-                      <img class="c-slider-dragon__image" src="<?php echo get_template_directory_uri(); ?>/img/fenrir.png" alt="">
+
+              <?php query_posts( array( 'post_type' => gragon, 'showposts' => 10 ) ); ?>
+              <?php while ( have_posts() ) : the_post(); ?>
+                <div class="c-slider-dragon__slide">
+                  <div class="o-layout">
+                    <div class="o-layout__item o-layout__item--6@md o-layout__item--push-6@md">
+                      <div class="c-slider-dragon__dragon c-slider-dragon__dragon--fenrir">
+                        <img class="c-slider-dragon__image" src="<?php echo the_post_thumbnail_url(); ?>" alt="">
+                      </div>
                     </div>
-                  </div>
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--pull-6@md">
-                    <div class="c-slider-dragon__info">
-                      <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@md">
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--prev js-slider-dragon-arrow" data-direction="prev">
-                            <i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>
-                            <span class="u-sr-only">Previous</span>
-                          </button>
-                        </li>
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--next js-slider-dragon-arrow" data-direction="next">
-                            <span class="u-sr-only">Next</span>
-                            <i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>
-                          </button>
-                        </li>
-                      </ul>
-                      <section class="c-explorer__content">
-                        <header class="c-explorer__header c-explorer__header--red">
-                          <h3 class="c-explorer__title">Fenrir</h3>
-                          <span class="c-explorer__flags">
-                                              <span class="c-explorer__flag-text">Breedable at level</span>
-                          <span class="c-explorer__flag-block">1</span>
-                          </span>
-                          <ul class="o-list-inline c-explorer__tags">
-                            <li class="c-explorer__tag">Warrior</li>
-                            <li class="c-explorer__tag">Rare</li>
-                            <li class="c-explorer__tag">Red</li>
-                          </ul>
-                        </header>
-                        <p class="c-explorer__description">
-                          <span class="c-explorer__text c-explorer__text--short">Russet Demon</span>
-                          <span class="c-explorer__text c-explorer__text--long">This dragon is untouchable.</span>
-                        </p>
-                        <div class="o-layout">
-                          <div class="o-layout__item o-layout__item--7@xs">
-                            <div class="c-explorer__left">
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-damage"></i> Max Level Damage / second</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 49%;">
-                                      <span class="u-sr-only">9,700 per second</span>
+                    <div class="o-layout__item o-layout__item--6@md o-layout__item--pull-6@md">
+                      <div class="c-slider-dragon__info">
+
+                        <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@md">
+                          <li class="c-pagination__item">
+                            <button class="c-pagination__nav c-pagination__nav--prev js-slider-dragon-arrow" data-direction="prev">
+                              <i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>
+                              <span class="u-sr-only">Previous</span>
+                            </button>
+                          </li>
+                          <li class="c-pagination__item">
+                            <button class="c-pagination__nav c-pagination__nav--next js-slider-dragon-arrow" data-direction="next">
+                              <span class="u-sr-only">Next</span>
+                              <i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>
+                            </button>
+                          </li>
+                        </ul>
+
+                        <section class="c-explorer__content">
+                          <header class="c-explorer__header c-explorer__header--red">
+                            <h3 class="c-explorer__title"><?php the_title(); ?></h3>
+                            <span class="c-explorer__flags">
+                              <span class="c-explorer__flag-text">Breedable at level</span>
+                              <span class="c-explorer__flag-block"><?php the_field('breedable_at_level'); ?></span>
+                            </span>
+                            <ul class="o-list-inline c-explorer__tags">
+
+                              <?php $tags = get_field('dragon_tags'); if( $tags ): ?>
+                                <?php foreach( $tags as $tag ): ?>
+                                  <li class="c-explorer__tag"><?php echo $tag['value']; ?></li>
+                                <?php endforeach; ?>
+                              <?php endif; ?>
+
+                            </ul>
+                          </header>
+                          <p class="c-explorer__description">
+                            <span class="c-explorer__text c-explorer__text--short"><?php the_field('description_short'); ?></span>
+                            <span class="c-explorer__text c-explorer__text--long"><?php the_content(); ?></span>
+                          </p>
+                          <div class="o-layout">
+                            <div class="o-layout__item o-layout__item--7@xs">
+                              <div class="c-explorer__left">
+                                <div class="c-stat c-stat--compact">
+                                  <header class="c-stat__header">
+                                    <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-damage"></i> Max Level Damage / second</span>
+                                  </header>
+                                  <div class="c-stat__bar-wrap">
+                                    <?php
+                                      $number = get_field('max_level_damage__second');
+                                      $english_format_number  = number_format($number);
+                                      $biggest_number = '14647';
+                                      $width = $number * 100 / $biggest_number;
+                                    ?>
+                                    <div class="c-stat__bar">
+                                      <div class="c-stat__bar-fill" style="width: <?php echo $width; ?>%;">
+                                        <span class="u-sr-only"><?php echo $english_format_number; ?> per second</span>
+                                      </div>
                                     </div>
                                   </div>
+                                  <div class="c-stat__label"><?php echo $english_format_number; ?></div>
                                 </div>
-                                <div class="c-stat__label">9,700</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-health"></i> Max Level Health</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 53%;">
-                                      <span class="u-sr-only">65.7K</span>
+                                <div class="c-stat c-stat--compact">
+                                  <header class="c-stat__header">
+                                    <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-health"></i> Max Level Health</span>
+                                  </header>
+                                    <?php
+                                      $number = get_field('max_level_health');
+                                      $english_format_number = number_format($number, 2, '.', '');
+                                      $biggest_number = '120';
+                                      $width = $number * 100 / $biggest_number;
+                                    ?>
+                                  <div class="c-stat__bar-wrap">
+                                    <div class="c-stat__bar">
+                                      <div class="c-stat__bar-fill" style="width: <?php echo $width; ?>%;">
+                                        <span class="u-sr-only"><?php echo $english_format_number  ; ?>K</span>
+                                      </div>
                                     </div>
                                   </div>
+                                  <div class="c-stat__label"><?php echo $english_format_number  ; ?>K</div>
                                 </div>
-                                <div class="c-stat__label">65.7K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-attack-power"></i> Max Level Attack Power</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 20%;">
-                                      <span class="u-sr-only">1,632</span>
+                                <div class="c-stat c-stat--compact">
+                                  <header class="c-stat__header">
+                                    <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-attack-power"></i> Max Level Attack Power</span>
+                                  </header>
+                                    <?php
+                                      $number = get_field('max_level_attack_power');
+                                      $english_format_number  = number_format($number);
+                                      $biggest_number = '8160';
+                                      $width = $number * 100 / $biggest_number;
+                                    ?>
+                                  <div class="c-stat__bar-wrap">
+                                    <div class="c-stat__bar">
+                                      <div class="c-stat__bar-fill" style="width: <?php echo $width; ?>%;">
+                                        <span class="u-sr-only"><?php echo $english_format_number; ?></span>
+                                      </div>
                                     </div>
                                   </div>
+                                  <div class="c-stat__label"><?php echo $english_format_number; ?></div>
                                 </div>
-                                <div class="c-stat__label">1,632</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-healing"></i> Maximum Level Healing Time</span>
-                                </header>
-                                <div class="c-stat__label c-stat__lable--time">50min : 12sec</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="o-layout__item o-layout__item--5@xs">
-                            <h5 class="c-explorer__sub-title">Abilities:</h5>
-                            <div class="o-layout">
-                              <div class="o-layout__item o-layout__item--12">
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/flamethrower-attack.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Flamethrower Attack</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/wind-wall_2.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Wind Wall</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/explosive_shield.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Explosive Shield</span>
-                                  </div>
+                                <div class="c-stat c-stat--compact">
+                                  <header class="c-stat__header">
+                                    <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-healing"></i> Maximum Level Healing Time</span>
+                                  </header>
+                                  <div class="c-stat__label c-stat__lable--time"><?php the_field('maximum_level_healing_time'); ?></div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-slider-dragon__slide">
-                <div class="o-layout">
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--push-6@md">
-                    <div class="c-slider-dragon__dragon c-slider-dragon__dragon--arborius">
-                      <img class="c-slider-dragon__image" src="<?php echo get_template_directory_uri(); ?>/img/arborius.png" alt="">
-                    </div>
-                  </div>
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--pull-6@md">
-                    <div class="c-slider-dragon__info">
-                      <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@md">
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--prev js-slider-dragon-arrow" data-direction="prev">
-                            <i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>
-                            <span class="u-sr-only">Previous</span>
-                          </button>
-                        </li>
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--next js-slider-dragon-arrow" data-direction="next">
-                            <span class="u-sr-only">Next</span>
-                            <i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>
-                          </button>
-                        </li>
-                      </ul>
-                      <section class="c-explorer__content">
-                        <header class="c-explorer__header c-explorer__header--purple">
-                          <h3 class="c-explorer__title">Arborius</h3>
-                          <span class="c-explorer__flags">
-                                              <span class="c-explorer__flag-text">Breedable at level</span>
-                          <span class="c-explorer__flag-block">8</span>
-                          </span>
-                          <ul class="o-list-inline c-explorer__tags">
-                            <li class="c-explorer__tag">Warrior</li>
-                            <li class="c-explorer__tag">Epic</li>
-                            <li class="c-explorer__tag">Purple</li>
-                          </ul>
-                        </header>
-                        <p class="c-explorer__description">
-                          <span class="c-explorer__text c-explorer__text--short">Earth Avatar</span>
-                          <span class="c-explorer__text c-explorer__text--long">This dragon eats foliage like candy.</span>
-                        </p>
-                        <div class="o-layout">
-                          <div class="o-layout__item o-layout__item--7@xs">
-                            <div class="c-explorer__left">
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-damage"></i> Max Level Damage / second</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 90%;">
-                                      <span class="u-sr-only">26.9K per second</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">26.9K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-health"></i> Max Level Health</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 98%;">
-                                      <span class="u-sr-only">220K</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">220K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-attack-power"></i> Max Level Attack Power</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 74%;">
-                                      <span class="u-sr-only">14.86K</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">14.86K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-healing"></i> Maximum Level Healing Time</span>
-                                </header>
-                                <div class="c-stat__label c-stat__lable--time">4hr : 43min</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="o-layout__item o-layout__item--5@xs">
-                            <h5 class="c-explorer__sub-title">Abilities:</h5>
-                            <div class="o-layout">
-                              <div class="o-layout__item o-layout__item--12">
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/flamethrower-attack.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Flamethrower Attack</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/rejuvunate.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Rejuvenate</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/stoneskin_sheild.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Stoneskin Shield</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/ballista_resist.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Ballista Resist</span>
-                                  </div>
+                            <div class="o-layout__item o-layout__item--5@xs">
+                              <h5 class="c-explorer__sub-title">Abilities:</h5>
+                              <div class="o-layout">
+                                <div class="o-layout__item o-layout__item--12">
+
+                                  <?php $abilities = get_field('abilities'); if( $abilities ): ?>
+                                    <?php foreach( $abilities as $ability ): ?>
+                                      <div class="o-media o-media--apply c-explorer__icon-block">
+                                        <div class="o-media__graphic ">
+                                          <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/ability-ico-<?php echo $ability['label']; ?>.png">
+                                        </div>
+                                        <div class="o-media__content">
+                                          <span class="c-explorer__icon-text"><?php echo $ability['value']; ?></span>
+                                        </div>
+                                      </div>
+                                    <?php endforeach; ?>
+                                  <?php endif; ?>
+
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </section>
+                        </section>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="c-slider-dragon__slide">
-                <div class="o-layout">
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--push-6@md">
-                    <div class="c-slider-dragon__dragon c-slider-dragon__dragon--caladbolg">
-                      <img class="c-slider-dragon__image" src="<?php echo get_template_directory_uri(); ?>/img/caladbolg.png" alt="">
-                    </div>
-                  </div>
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--pull-6@md">
-                    <div class="c-slider-dragon__info">
-                      <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@md">
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--prev js-slider-dragon-arrow" data-direction="prev">
-                            <i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>
-                            <span class="u-sr-only">Previous</span>
-                          </button>
-                        </li>
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--next js-slider-dragon-arrow" data-direction="next">
-                            <span class="u-sr-only">Next</span>
-                            <i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>
-                          </button>
-                        </li>
-                      </ul>
-                      <section class="c-explorer__content">
-                        <header class="c-explorer__header c-explorer__header--gold">
-                          <h3 class="c-explorer__title">Caladbolg</h3>
-                          <span class="c-explorer__flags">
-                                              <span class="c-explorer__flag-text">Breedable at level</span>
-                          <span class="c-explorer__flag-block">8</span>
-                          </span>
-                          <ul class="o-list-inline c-explorer__tags">
-                            <li class="c-explorer__tag">Sorcerer</li>
-                            <li class="c-explorer__tag">Epic</li>
-                            <li class="c-explorer__tag">Gold</li>
-                          </ul>
-                        </header>
-                        <p class="c-explorer__description">
-                          <span class="c-explorer__text c-explorer__text--short">Arcane Dragon</span>
-                          <span class="c-explorer__text c-explorer__text--long">A symbol of tempered force; the wise general; the patient lord.</span>
-                        </p>
-                        <div class="o-layout">
-                          <div class="o-layout__item o-layout__item--7@xs">
-                            <div class="c-explorer__left">
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-damage"></i> Max Level Damage / second</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 57%;">
-                                      <span class="u-sr-only">142K per second</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">142K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-health"></i> Max Level Health</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 46%;">
-                                      <span class="u-sr-only">1.25M</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">1.25M</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-attack-power"></i> Max Level Attack Power</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 44%;">
-                                      <span class="u-sr-only">614.8K</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">614.8K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-healing"></i> Maximum Level Healing Time</span>
-                                </header>
-                                <div class="c-stat__label c-stat__lable--time">5hr : 4min</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="o-layout__item o-layout__item--5@xs">
-                            <h5 class="c-explorer__sub-title">Abilities:</h5>
-                            <div class="o-layout">
-                              <div class="o-layout__item o-layout__item--12">
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/lock-on-attack.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Lock On Attack</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/thunderstorm_2.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Thunderstorm</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/chain_lightning.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Chain Lightning</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/lightning_resist.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Lightning Resist</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-slider-dragon__slide">
-                <div class="o-layout">
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--push-6@md">
-                    <div class="c-slider-dragon__dragon  c-slider-dragon__dragon--dactyl">
-                      <img class="c-slider-dragon__image" src="<?php echo get_template_directory_uri(); ?>/img/dactyl.png" alt="">
-                    </div>
-                  </div>
-                  <div class="o-layout__item o-layout__item--6@md o-layout__item--pull-6@md">
-                    <div class="c-slider-dragon__info">
-                      <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@md">
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--prev js-slider-dragon-arrow" data-direction="prev">
-                            <i class="c-icon c-icon--left-open c-pagination__nav-icon"></i>
-                            <span class="u-sr-only">Previous</span>
-                          </button>
-                        </li>
-                        <li class="c-pagination__item">
-                          <button class="c-pagination__nav c-pagination__nav--next js-slider-dragon-arrow" data-direction="next">
-                            <span class="u-sr-only">Next</span>
-                            <i class="c-icon c-icon--right-open c-pagination__nav-icon"></i>
-                          </button>
-                        </li>
-                      </ul>
-                      <section class="c-explorer__content">
-                        <header class="c-explorer__header c-explorer__header--purple">
-                          <h3 class="c-explorer__title">Dactyl</h3>
-                          <span class="c-explorer__flags">
-                                              <span class="c-explorer__flag-text">Breedable at level</span>
-                          <span class="c-explorer__flag-block">6</span>
-                          </span>
-                          <ul class="o-list-inline c-explorer__tags">
-                            <li class="c-explorer__tag">Hunter</li>
-                            <li class="c-explorer__tag">Rare</li>
-                            <li class="c-explorer__tag">Purple</li>
-                          </ul>
-                        </header>
-                        <p class="c-explorer__description">
-                          <span class="c-explorer__text c-explorer__text--short">Reanimated Wyvern</span>
-                          <span class="c-explorer__text c-explorer__text--long">This dragon makes its armor out of the skin of defeated foes.</span>
-                        </p>
-                        <div class="o-layout">
-                          <div class="o-layout__item o-layout__item--7@xs">
-                            <div class="c-explorer__left">
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-damage"></i> Max Level Damage / second</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 39%;">
-                                      <span class="u-sr-only">11.7K per second</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">11.7K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-health"></i> Max Level Health</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 34%;">
-                                      <span class="u-sr-only">76K</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">76K</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-attack-power"></i> Max Level Attack Power</span>
-                                </header>
-                                <div class="c-stat__bar-wrap">
-                                  <div class="c-stat__bar">
-                                    <div class="c-stat__bar-fill" style="width: 18%;">
-                                      <span class="u-sr-only">3,510</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-stat__label">3,510</div>
-                              </div>
-                              <div class="c-stat c-stat--compact">
-                                <header class="c-stat__header">
-                                  <span class="c-stat__title"><i class="c-sprite c-sprite--stat c-sprite--max-level-healing"></i> Maximum Level Healing Time</span>
-                                </header>
-                                <div class="c-stat__label c-stat__lable--time">1hr : 47min</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="o-layout__item o-layout__item--5@xs">
-                            <h5 class="c-explorer__sub-title">Abilities:</h5>
-                            <div class="o-layout">
-                              <div class="o-layout__item o-layout__item--12">
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/fireball-attack.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Fireball Attack</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/havoc_2.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Havoc</span>
-                                  </div>
-                                </div>
-                                <div class="o-media o-media--apply c-explorer__icon-block">
-                                  <div class="o-media__graphic">
-                                    <img class="c-explorer__icon" width="32" height="32" src="<?php echo get_template_directory_uri(); ?>/img/ballista_resist.png">
-                                  </div>
-                                  <div class="o-media__content">
-                                    <span class="c-explorer__icon-text">Ballista Resist</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <?php endwhile; ?>
+
             </div>
             <ul class="o-list-unstyled c-slider-dragon-nav c-pagination u-hidden@less-than-md">
               <li class="c-pagination__item">
@@ -624,53 +246,39 @@
         <div class="o-container o-content-block__container">
           <div class="o-layout">
             <div class="o-layout__item o-layout__item--6@c940 o-layout__item--5@md o-layout__item--offset-1@md">
-              <section class="c-mod">
-                <header class="c-mod-heading">
-                  <span class="c-mod-heading__content">
-                                  <span class="c-mod-heading__flag"></span>
-                  <div class="o-media o-media--apply o-media--flip">
-                    <div class="o-media__graphic">
-                      <span class="c-icon-frame c-icon-frame--grey-45 c-icon-frame--small">
-
-                                              <svg class="c-icon-frame__svg" xmlns="http://www.w3.org/2000/svg" viewbox="4 0 108.7 100">
-                                                  <path d="M110.5 91.1h-2.3c0 2.2-1.9 4.1-4.2 4.1H12.8c-2.4 0-4.2-1.9-4.2-4.1V36.3h99.7v54.8h4.5V34c0-.6-.2-1.2-.7-1.6-.4-.4-1-.7-1.6-.7H6.3c-.6 0-1.2.2-1.6.7-.5.4-.7 1-.7 1.6v57.1c0 4.8 4 8.6 8.8 8.6H104c4.8 0 8.8-3.8 8.8-8.6h-2.3z"/>
-                                                  <path d="M42.5 83.9h2.3V51.3l28.9 14.5-32.2 16 1 2.1h2.3-2.3l1 2 36.2-18.1c.8-.4 1.3-1.2 1.3-2s-.5-1.6-1.3-2L43.5 45.6c-.7-.4-1.5-.3-2.2.1-.7.4-1.1 1.1-1.1 1.9v36.2c0 .8.4 1.5 1.1 1.9.7.4 1.5.4 2.2.1l-1-1.9zM110.5 25v-2.3H8.5V6.8c0-1.2 1-2.3 2.3-2.3h95.1c1.3 0 2.3 1 2.3 2.3V25h2.3v-2.3V25h2.3V6.8c0-3.8-3-6.8-6.8-6.8H10.8C7 0 4 3.1 4 6.8V25c0 .6.2 1.2.7 1.6.4.4 1 .7 1.6.7h104.2c.6 0 1.2-.2 1.6-.7.4-.4.7-1 .7-1.6h-2.3z"/>
-                                                  <path d="M7.9 24.3L28.3 3.9 25.1.7 4.7 21.1M21.4 26.6L44.1 3.9 40.9.7 18.2 23.4M39.6 26.6L62.2 3.9 59 .7 36.4 23.4M57.7 26.6L80.4 3.9 77.2.7 54.5 23.4M75.9 26.5L98.5 3.9 95.3.7 72.7 23.3M94 26.6l18.1-18.2-3.2-3.2-18.1 18.2"/>
-                                              </svg>
-
-                                          </span>
-                    </div>
-                    <div class="o-media__content">
-                      <h3 class="c-mod-heading__title u-text-gradient">Featured Media</h3>
+              <?php query_posts("showposts=1&cat=10"); ?>
+              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                <section class="c-mod">
+                  <header class="c-mod-heading">
+                    <span class="c-mod-heading__content">
+                      <span class="c-mod-heading__flag"></span>
+                      <div class="o-media o-media--apply o-media--flip">
+                        <div class="o-media__content">
+                          <h3 class="c-mod-heading__title u-text-gradient">Featured Media</h3>
+                        </div>
+                      </div>
+                    </span>
+                  </header>
+                  <div class="c-mod__body">
+                    <div class="o-video-container">
+                      <?php the_field('video'); ?>
                     </div>
                   </div>
-                  </span>
-                </header>
-                <div class="c-mod__body">
-                  <div class="o-video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RGF_vriSlTo" frameborder="0" allowfullscreen></iframe>
-                  </div>
-                </div>
-                <div class="c-mod__footer c-footer-news-media">
-                  <div class="o-media o-media--apply@sm o-media--flip">
-                    <div class="o-media__graphic o-media__graphic--button">
-                      <a href="http://wardragons.com/media" class="c-btn">
-                        <span class="c-btn__block c-btn__icon-block">
-                                          <svg class="c-btn__svg" xmlns="http://www.w3.org/2000/svg" viewbox="4 0 108.7 100">
-                                              <path d="M110.5 91.1h-2.3c0 2.2-1.9 4.1-4.2 4.1H12.8c-2.4 0-4.2-1.9-4.2-4.1V36.3h99.7v54.8h4.5V34c0-.6-.2-1.2-.7-1.6-.4-.4-1-.7-1.6-.7H6.3c-.6 0-1.2.2-1.6.7-.5.4-.7 1-.7 1.6v57.1c0 4.8 4 8.6 8.8 8.6H104c4.8 0 8.8-3.8 8.8-8.6h-2.3z"/>
-                                              <path d="M42.5 83.9h2.3V51.3l28.9 14.5-32.2 16 1 2.1h2.3-2.3l1 2 36.2-18.1c.8-.4 1.3-1.2 1.3-2s-.5-1.6-1.3-2L43.5 45.6c-.7-.4-1.5-.3-2.2.1-.7.4-1.1 1.1-1.1 1.9v36.2c0 .8.4 1.5 1.1 1.9.7.4 1.5.4 2.2.1l-1-1.9zM110.5 25v-2.3H8.5V6.8c0-1.2 1-2.3 2.3-2.3h95.1c1.3 0 2.3 1 2.3 2.3V25h2.3v-2.3V25h2.3V6.8c0-3.8-3-6.8-6.8-6.8H10.8C7 0 4 3.1 4 6.8V25c0 .6.2 1.2.7 1.6.4.4 1 .7 1.6.7h104.2c.6 0 1.2-.2 1.6-.7.4-.4.7-1 .7-1.6h-2.3z"/>
-                                              <path d="M7.9 24.3L28.3 3.9 25.1.7 4.7 21.1M21.4 26.6L44.1 3.9 40.9.7 18.2 23.4M39.6 26.6L62.2 3.9 59 .7 36.4 23.4M57.7 26.6L80.4 3.9 77.2.7 54.5 23.4M75.9 26.5L98.5 3.9 95.3.7 72.7 23.3M94 26.6l18.1-18.2-3.2-3.2-18.1 18.2"/>
-                                          </svg>
-                                      </span>
-                        <span class="c-btn__block">Media Page</span>
-                      </a>
-                    </div>
-                    <div class="o-media__content">
-                      <p>Check out the latest in-game footage and images of the destruction and mayhem in WAR DRAGONS.</p>
+                  <div class="c-mod__footer c-footer-news-media">
+                    <div class="o-media o-media--apply@sm o-media--flip">
+                      <div class="o-media__graphic o-media__graphic--button">
+                        <a href="#" class="c-btn">
+                          <span class="c-btn__block">Media Page</span>
+                        </a>
+                      </div>
+                      <div class="o-media__content">
+                        <p>Check out the latest in-game footage and images of the destruction and mayhem in WAR DRAGONS.</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>
+              <?php endwhile; endif; ?>
+              <?php wp_reset_query(); ?>
             </div>
             <div class="o-layout__item o-layout__item--6@c940 o-layout__item--5@md">
               <section class="c-mod">
@@ -678,14 +286,6 @@
                   <span class="c-mod-heading__content">
                   <span class="c-mod-heading__flag"></span>
                   <div class="o-media o-media--apply o-media--flip">
-                    <div class="o-media__graphic">
-                      <span class="c-icon-frame c-icon-frame--grey-45 c-icon-frame--small">
-                        <svg class="c-icon-frame__svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 126.2 100">
-                            <path class="st0" d="M123.6 2.6V0H2.6C1.9 0 1.3.3.8.8S0 1.9 0 2.6v94.6c0 .7.3 1.4.8 1.9s1.2.8 1.9.8h120.9c.7 0 1.4-.3 1.9-.8s.8-1.2.8-1.9V2.6c0-.7-.3-1.4-.8-1.9s-1.2-.8-1.9-.8v2.7H121v92H5.3V5.3h118.3V2.6H121h2.6z"/>
-                            <path class="st0" d="M113.2 34.8v-2.6H15.8V21.6h94.7v13.2h2.7v-2.6 2.6h2.6V19c0-.7-.3-1.4-.8-1.9s-1.2-.8-1.9-.8h-100c-.7 0-1.4.3-1.9.8s-.8 1.2-.8 1.9v15.8c0 .7.3 1.4.8 1.9s1.2.8 1.9.8h100c.7 0 1.4-.3 1.9-.8s.8-1.2.8-1.9h-2.6zM23.7 53.2h31.6c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H23.7c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.1 2.6 2.6 2.6M18.4 63.7h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.2 2.6 2.6 2.6M18.4 74.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.5 1.2 2.6 2.6 2.6M18.4 84.8h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.2 2.6 2.6 2.6M71.1 53.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6M71.1 63.7h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6M71.1 74.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.5 1.1 2.6 2.6 2.6M71.1 84.8h31.6c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6"/>
-                        </svg>
-                      </span>
-                    </div>
                     <div class="o-media__content">
                       <h3 class="c-mod-heading__title u-text-gradient">Dragon News</h3>
                     </div>
@@ -759,17 +359,6 @@
                 </div>
                 <div class="c-mod__footer c-footer-news-media">
                   <div class="o-media o-media--apply@sm o-media--flip">
-                    <div class="o-media__graphic o-media__graphic--button">
-                      <a href="http://wardragons.com/blog" class="c-btn">
-                        <span class="c-btn__block c-btn__icon-block">
-                          <svg class="c-btn__svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 126.2 100">
-                              <path class="st0" d="M123.6 2.6V0H2.6C1.9 0 1.3.3.8.8S0 1.9 0 2.6v94.6c0 .7.3 1.4.8 1.9s1.2.8 1.9.8h120.9c.7 0 1.4-.3 1.9-.8s.8-1.2.8-1.9V2.6c0-.7-.3-1.4-.8-1.9s-1.2-.8-1.9-.8v2.7H121v92H5.3V5.3h118.3V2.6H121h2.6z"/>
-                              <path class="st0" d="M113.2 34.8v-2.6H15.8V21.6h94.7v13.2h2.7v-2.6 2.6h2.6V19c0-.7-.3-1.4-.8-1.9s-1.2-.8-1.9-.8h-100c-.7 0-1.4.3-1.9.8s-.8 1.2-.8 1.9v15.8c0 .7.3 1.4.8 1.9s1.2.8 1.9.8h100c.7 0 1.4-.3 1.9-.8s.8-1.2.8-1.9h-2.6zM23.7 53.2h31.6c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H23.7c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.1 2.6 2.6 2.6M18.4 63.7h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.2 2.6 2.6 2.6M18.4 74.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.5 1.2 2.6 2.6 2.6M18.4 84.8h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H18.4c-1.5 0-2.6 1.2-2.6 2.6 0 1.4 1.2 2.6 2.6 2.6M71.1 53.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6M71.1 63.7h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6M71.1 74.2h36.8c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.5 1.1 2.6 2.6 2.6M71.1 84.8h31.6c1.5 0 2.6-1.2 2.6-2.6 0-1.5-1.2-2.6-2.6-2.6H71.1c-1.5 0-2.6 1.2-2.6 2.6-.1 1.4 1.1 2.6 2.6 2.6"/>
-                          </svg>
-                        </span>
-                        <span class="c-btn__block">Blog Page</span>
-                      </a>
-                    </div>
                     <div class="o-media__content">
                       <p>Read our blog series titled "Tales from the Dragon's Den" and "Dragon Lord Spotlight" to stay up to date on changes in the game and fun community events.</p>
                     </div>
