@@ -23,7 +23,7 @@
                 <p class="c-slide-text__copy">
                   <?php echo $description; ?>
                 </p>
-                <a class="c-slide-text__link" href="<?php echo $link; ?>" target="_self">Read More &raquo;</a>
+                <a class="c-slide-text__link" href="<?php echo $link; ?>" target="_self">Читать далее &raquo;</a>
               </div>
             <?php endwhile; ?>
           </div>
@@ -67,10 +67,10 @@
         <div class="o-container o-content-block__container">
           <header class="c-section-header">
             <h2 class="c-section-header__title u-text-gradient">
-                  Build the Ultimate Army of Fire
+                  Построй непобедимую армию огня
               </h2>
             <p class="c-section-header__text u-text-shadow">
-              Collect, breed, and train hundreds of dragons possessing different attack styles, spell abilities, and classes in this action-packed strategy game.
+              Собирайте, разводите и тренируйте сотни драконов, обладающих различными стилями атаки, заклинаниями и классами в этой насыщенной стратегической игре.
             </p>
           </header>
           <div class="o-island o-island--super u-hidden@less-than-md"></div>
@@ -254,7 +254,7 @@
                       <span class="c-mod-heading__flag"></span>
                       <div class="o-media o-media--apply o-media--flip">
                         <div class="o-media__content">
-                          <h3 class="c-mod-heading__title u-text-gradient">Featured Media</h3>
+                          <h3 class="c-mod-heading__title u-text-gradient">Видео</h3>
                         </div>
                       </div>
                     </span>
@@ -268,11 +268,11 @@
                     <div class="o-media o-media--apply@sm o-media--flip">
                       <div class="o-media__graphic o-media__graphic--button">
                         <a href="#" class="c-btn">
-                          <span class="c-btn__block">Media Page</span>
+                          <span class="c-btn__block">Смотреть</span>
                         </a>
                       </div>
                       <div class="o-media__content">
-                        <p>Check out the latest in-game footage and images of the destruction and mayhem in WAR DRAGONS.</p>
+                        <p>Ознакомьтесь с последними кадровыми материалами и изображениями разрушения и хаоса в WAR DRAGONS.</p>
                       </div>
                     </div>
                   </div>
@@ -287,7 +287,7 @@
                   <span class="c-mod-heading__flag"></span>
                   <div class="o-media o-media--apply o-media--flip">
                     <div class="o-media__content">
-                      <h3 class="c-mod-heading__title u-text-gradient">Dragon News</h3>
+                      <h3 class="c-mod-heading__title u-text-gradient">Новости WarDragons</h3>
                     </div>
                   </div>
                   </span>
@@ -295,7 +295,7 @@
                 <div class="c-mod__body">
                   <div class="c-slider-news js-slider-news">
 
-                    <?php query_posts("showposts=10&cat=1"); ?>
+                    <?php query_posts("showposts=10&cat=11"); ?>
                     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
                       <div class="c-slider-news__slide" data-slide="1">
@@ -311,7 +311,7 @@
                             <div class="c-slider-news__content">
                               <span class="c-slider-news__date"><?php the_time('j F Y'); ?></span>
                               <h4 class="c-slider-news__title"><?php the_title(); ?></h4>
-                              <a class="c-slider-news__link" href="<?php the_permalink(); ?>">Continue to article &raquo;</a>
+                              <a class="c-slider-news__link" href="<?php the_permalink(); ?>">Читать далее &raquo;</a>
                             </div>
                           </div>
                         </div>
@@ -360,7 +360,7 @@
                 <div class="c-mod__footer c-footer-news-media">
                   <div class="o-media o-media--apply@sm o-media--flip">
                     <div class="o-media__content">
-                      <p>Read our blog series titled "Tales from the Dragon's Den" and "Dragon Lord Spotlight" to stay up to date on changes in the game and fun community events.</p>
+                      <p>Следите за Новостями Мира WarDragons, чтобы быть в курсе последних событий игры и гильдии Russia</p>
                     </div>
                   </div>
                 </div>
@@ -376,7 +376,7 @@
         <div class="o-container o-content-block__container">
           <header class="c-section-header">
             <h2 class="c-section-header__title u-text-gradient">
-                  How do you stack up against the competition?
+                  Как построить неприступную базу? Как максимально эффективно провести ивенты? Ответы на эти вопросы Вы найдете в Наших Гайдах!
               </h2>
           </header>
           <!-- /.c-section-header -->

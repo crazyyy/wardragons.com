@@ -308,7 +308,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 		 * @return boolean True if license is active
 		 */
 		public function license_is_valid() {
-			return ( $this->get_license_status() === 'valid' );
+		    return ( $this->get_license_status() === 'valid' );
 		}
 
 		/**

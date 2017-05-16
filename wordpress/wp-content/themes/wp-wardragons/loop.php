@@ -22,7 +22,7 @@
                 </h4>
             </header>
             <a class="c-blog-excerpt__link c-blog-excerpt__link--read-more" href="<?php the_permalink(); ?>">
-                Continue to Article <i class="c-icon c-icon--angle-double-right c-blog-excerpt__icon"></i>
+                Читать далее <i class="c-icon c-icon--angle-double-right c-blog-excerpt__icon"></i>
             </a>
           </div>
         </div>

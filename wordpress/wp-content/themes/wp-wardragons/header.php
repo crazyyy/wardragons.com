@@ -23,7 +23,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri(); ?>/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_template_directory_uri(); ?>/img/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri(); ?>/img/favicon-16x16.png">
-
+<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
   <!--[if lt IE 9]>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
@@ -49,7 +50,7 @@
     <header class="c-header" role="banner">
       <div class="c-header__inner">
         <div class="c-logo-block">
-          <a class="c-logo c-logo--war-dragons c-logo-block__logo" href="<?php echo home_url(); ?>">War Dragons</a>
+          <a class="c-logo c-logo--war-dragons c-logo-block__logo" href="<?php echo home_url(); ?>">War Dragons Russia</a>
         </div>
         <!-- /.c-logo-block -->
         <div class="c-menu-block">
@@ -60,17 +61,17 @@
 
             <ul class="o-list-unstyled c-nav__list">
               <li class="c-nav__item ">
-                <a href="<?php echo home_url(); ?>/game-info.htm" class="c-nav__link">Game Info</a>
+                <a href="<?php echo home_url(); ?>/game-info.htm" class="c-nav__link">Информация по игре</a>
                 <img class="c-nav__banner" src="<?php echo get_template_directory_uri(); ?>/img/banner-pointer.png" alt="">
                 <ul class="c-dropdown">
                   <li class="c-dropdown__item">
-                    <a class="c-dropdown__link" href="#">Dragons</a>
+                    <a class="c-dropdown__link" href="#">Драконы</a>
                   </li>
                   <li class="c-dropdown__item">
-                    <a class="c-dropdown__link" href="#">Buildings</a>
+                    <a class="c-dropdown__link" href="#">Строения</a>
                   </li>
                   <li class="c-dropdown__item">
-                    <a class="c-dropdown__link" href="#">Abilities</a>
+                    <a class="c-dropdown__link" href="#">Способности</a>
                   </li>
                   <li class="c-dropdown__item">
                     <a class="c-dropdown__link" href="#">Portraits</a>

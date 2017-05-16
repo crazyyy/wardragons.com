@@ -6,10 +6,10 @@
         <div class="o-layout__item o-layout__item--10@sm o-layout__item--offset-1@sm">
           <div class="c-hero__content">
             <div class="c-hero__title">
-              <h1 class="c-hero__heading u-text-gradient">Blog</h1>
-            </div>
+              <h1 class="c-hero__heading u-text-gradient">Новости</h1>
+			  </div>
             <p class="c-hero__description">
-              <?php echo category_description( $category_id ); ?>
+              <?php echo category_description( $category_id=11 ); ?>
             </p>
           </div>
         </div>
@@ -29,7 +29,7 @@
                     <span class="c-mod-heading__flag"></span>
                       <div class="o-media o-media--apply o-media--flip">
                         <div class="o-media__content">
-                          <h3 class="c-mod-heading__title u-text-gradient">Blog</h3>
+                          <h3 class="c-mod-heading__title u-text-gradient">Новости</h3>
                         </div>
                       </div>
                   </span>
@@ -58,8 +58,8 @@
     <div class="o-content-block__content">
       <div class="o-container o-content-block__container">
         <div class="c-cta">
-          <span class="c-cta__text u-text-shadow--red"><strong>Get the free mobile game</strong></span>
-          <span class="c-cta__text u-text-shadow--red">that everyone is playing.</span>
+          <span class="c-cta__text u-text-shadow--red"><strong>Получите бесплатную мобильную игру,</strong></span>
+          <span class="c-cta__text u-text-shadow--red">в которую играют все</span>
         </div>
       </div>
     </div>
