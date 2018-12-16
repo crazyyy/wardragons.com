@@ -5261,10 +5261,12 @@ body.is-loaded .c-stat__bar-fill:after {
 }
 
 .c-slider-dragon__type {
-  display: inline-block;
-  margin-bottom: 8px;
   font-size: .8571428571em;
-  font-style: italic
+  font-style: italic;
+
+  display: inline-block;
+
+  margin-bottom: 8px;
 }
 
 .c-slider-dragon__info {
